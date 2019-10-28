@@ -16,12 +16,10 @@
 //! ## Using the new `tokio` crate
 //!
 //! ```rust
-//! # extern crate futures;
 //! # extern crate tokio;
 //! # extern crate tokio_retry;
 //! #
-//! # use futures::Future;
-//! # use futures::future::lazy;
+//! # use tokio::prelude::*;
 //! use tokio_retry::Retry;
 //! use tokio_retry::strategy::{ExponentialBackoff, jitter};
 //!
@@ -44,38 +42,6 @@
 //! # }
 //! ```
 //!
-//! ## Using the `tokio_core` crate
-//!
-//! ```rust
-//! # extern crate futures;
-//! # extern crate tokio_core;
-//! # extern crate tokio_retry;
-//! #
-//! # use futures::Future;
-//! # use futures::future::lazy;
-//! use tokio_core::reactor::Core;
-//! use tokio_retry::Retry;
-//! use tokio_retry::strategy::{ExponentialBackoff, jitter};
-//!
-//! fn action() -> Result<u64, ()> {
-//!     // do some real-world stuff here...
-//!     Err(())
-//! }
-//!
-//! # fn main() {
-//! let mut core = Core::new().unwrap();
-//!
-//! let retry_strategy = ExponentialBackoff::from_millis(10)
-//!     .map(jitter)
-//!     .take(3);
-//!
-//! let future = Retry::spawn(retry_strategy, action).then(|result| {
-//!     println!("result {:?}", result);
-//!     Ok::<_, ()>(())
-//! });
-//!
-//! core.run(future).unwrap();
-//! # }
 //! ```
 
 mod action;

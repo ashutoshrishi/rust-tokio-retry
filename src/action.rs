@@ -1,4 +1,4 @@
-use futures::{IntoFuture, Future};
+use tokio::prelude::{IntoFuture, Future};
 
 /// An action can be run multiple times and produces a future.
 pub trait Action {

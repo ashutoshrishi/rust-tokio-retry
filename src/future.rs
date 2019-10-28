@@ -4,8 +4,8 @@ use std::cmp;
 use std::fmt;
 use std::time::{Duration, Instant};
 
-use futures::{Async, Future, Poll};
-use tokio_timer::{Delay, Error as TimerError};
+use tokio::prelude::*;
+use tokio::timer::{Delay, Error as TimerError};
 
 use super::action::Action;
 use super::condition::Condition;
